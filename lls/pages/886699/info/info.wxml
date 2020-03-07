@@ -1,0 +1,21 @@
+<view class="cu-card dynamic">
+    <view class="cu-item shadow" style="display:flex; background: transparent;">
+        <image class="pic shadow shadow-lg bg-gray" src="{{data.pic}}" lazy-load="{{true}}" webp="{{true}}" mode="aspectFit" />
+        <view class="summary">
+            <view class="summary-item title">{{data.title}}</view>
+            <view class="summary-item title_en text-gray" wx:if="{{data.title_en}}">{{data.title_en}}</view>
+            <view class="summary-item area text-gray">{{data.year}}</view>
+            <view class="summary-item area text-gray"><text class="text-for" wx:for="{{data.area}}" wx:key="{{index}}">{{item}}</text></view>
+            <view class="summary-item subtype text-gray"><text class="text-for" wx:for="{{data.subtype}}" wx:key="{{index}}">{{item}}</text></view>
+            <view class="summary-item alias text-gray"><text class="text-for" wx:for="{{data.alias}}" wx:key="{{index}}">《{{item}}》</text></view>
+        </view>
+    </view>
+    <view class="cu-item shadow card-padding">
+        <view class="card-text"><text class="text-for" wx:for="{{data.director}}" wx:key="{{index}}">{{item}}</text></view>
+        <view class="card-text"><text class="text-for" wx:for="{{data.actor}}" wx:key="{{index}}">{{item}}</text></view>
+    </view>
+    <view class="cu-item shadow card-padding">
+        <view class="card-text">{{data.desc}}</view>
+    </view>
+</view>
+<official-account></official-account>

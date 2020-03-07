@@ -1,0 +1,12 @@
+<div id="dplayer" class="dplayer"></div>
+<script src="https://sdk-release.qnsdk.com/qiniu-web-player-1.0.0.js"></script>
+<script type="text/javascript">
+  $(function(){
+    Player = new QPlayer({
+      url: '{{$vurl$}}',
+      container: document.getElementById("dplayer"),
+      autoplay: true,
+      loggerLevel: 3
+    });
+  });
+</script>

@@ -1,0 +1,32 @@
+.summary{
+    padding: 20rpx;
+}
+.summary-item {
+    margin-bottom: 10rpx;
+}
+
+.text-for{
+    margin-right: 10rpx;
+    display: inline-block;
+}
+
+.pic{
+    width: 300rpx;
+    height: 445rpx;
+}
+
+.title{
+    font-size: 12pt;
+}
+
+.title_en{
+    font-size: 8pt;
+}
+
+.card-padding{
+    padding: 30rpx;
+}
+
+.card-text{
+    line-height: 2em;
+}

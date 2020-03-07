@@ -1,0 +1,50 @@
+<div class="weui-panel">
+    <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_text">
+            <p class="weui-media-box__desc">
+                {{$screen$}}
+            </p>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">{{$year$}}</li>
+                <li class="weui-media-box__info__meta">{{$area$}}</li>
+                <li class="weui-media-box__info__meta weui-media-box__info__meta_extra"><i
+                        class="iconfont icon-weixin"></i> ymlshow</li>
+            </ul>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">微信内部加载视频可能较慢，请耐心等待。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="weui-panel {{$ep-type-css$}}">
+    {{$eps$}}
+</div>
+<article class="weui-article">
+    <h1>导演</h1>
+    <p>{{$director$}}</p>
+    <h1>主演</h1>
+    <p>{{$actor$}}</p>
+    <h1>类型</h1>
+    <p>{{$subtype$}}</p>
+    <h1>剧情简介</h1>
+    <p>{{$desc$}}</p>
+</article>
+<script>
+    $(function () {
+        $('a[data-epid="{{$playing-epid$}}"]').addClass("ep-playing")
+        $('#tab_playing').data("playingepid", '{{$playing-epid$}}')
+        var $loadingToast = $('#loadingToast');
+        $('a[data-epid]').on('click', function () {
+            if ($loadingToast.css('display') != 'none') return;
+            $loadingToast.fadeIn(100);
+            let playurl = cmds['play'] + '/' + $(this).data('epid');
+            destoryPlayer();
+            $('#container').html('');
+            fetch(playurl).then(res => (res.text()))
+                .then(body => {
+                    $('#container').html(body);
+                    $loadingToast.fadeOut(100);
+                });
+        });
+    });
+</script>

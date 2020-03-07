@@ -1,0 +1,29 @@
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clappr/0.3.3/clappr.min.js"></script>
+<div id="cplayer" class="dplayer"></div>
+<script>
+
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/clappr/0.3.3/clappr.min.js";
+  script.onload = script.onreadystatechange = function () {
+    if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+      oPlayer = new Clappr.Player({
+        parentId: "#cplayer",
+        source: "{{$vurl$}}",
+        height: 230,
+        width: '100%',
+        playback: {
+          preload: 'metadata',
+          playInline: true
+        },
+        events: {
+          onError: function () { $('#errorToast').fadeIn(100); setTimeout(() => { $('#errorToast').fadeOut(100); }, 3000); },//当播放出错时
+        }
+      });
+      script.onload = script.onreadystatechange = null;
+    }
+  };
+  head.appendChild(script);
+</script>

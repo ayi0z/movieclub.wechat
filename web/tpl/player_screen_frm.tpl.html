@@ -1,0 +1,72 @@
+<iframe id='frmscreen' crolling="no" allowtransparency="true" frameborder="0" align="middle" 
+        width="100%" height="100%" marginheight="0" marginwidth="0"
+        hspace="0" vspace="0" allowfullscreen="true"
+        src="{{$playurl$}}">
+</iframe>
+<!-- <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;" id="showChangePlayGate">
+        <div class="weui-cell__bd">
+            <p>如果无法观看，请尝试切换线路</p>
+        </div>
+        <div class="weui-cell__ft">切换线路</div>
+    </a>
+</div> -->
+<!-- <div>
+    <div class="weui-mask" id="iosMask" style="display: none"></div>
+    <div class="weui-actionsheet" id="iosActionsheet">
+        <div class="weui-actionsheet__menu">
+            {{$gateactionsheets$}}
+        </div>
+        <div class="weui-actionsheet__action">
+            <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
+        </div>
+    </div>
+</div>
+<div class="weui-skin_android" id="androidActionsheet" style="display: none">
+    <div class="weui-mask"></div>
+    <div class="weui-actionsheet">
+        <div class="weui-actionsheet__menu">
+            {{$gateactionsheets$}}
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    let playing_gate='{{$playing_gate$}}';
+    let vurl='{{$vurl$}}';
+    $('div[data-playgate]').on('click', function(){
+      let playgate = $(this).data('playgate');
+      if(playgate && playgate !== playing_gate){
+        playing_gate = playgate;
+        $('#frmscreen').attr('src', playing_gate + vurl);
+      }
+    });
+    
+    if(/android/i.test(navigator.userAgent)){
+      var $androidActionSheet = $('#androidActionsheet');
+      var $androidMask = $androidActionSheet.find('.weui-mask');
+
+      $("#showChangePlayGate").on('click', function(){
+          $androidActionSheet.fadeIn(200);
+          $androidMask.on('click',function () {
+              $androidActionSheet.fadeOut(200);
+          });
+      });
+    }else{
+      var $iosActionsheet = $('#iosActionsheet');
+      var $iosMask = $('#iosMask');
+
+      function hideActionSheet() {
+          $iosActionsheet.removeClass('weui-actionsheet_toggle');
+          $iosMask.fadeOut(200);
+      }
+
+      $iosMask.on('click', hideActionSheet);
+      $('#iosActionsheetCancel').on('click', hideActionSheet);
+      $("#showChangePlayGate").on("click", function(){
+          $iosActionsheet.addClass('weui-actionsheet_toggle');
+          $iosMask.fadeIn(200);
+      });
+    }
+  });
+</script> -->

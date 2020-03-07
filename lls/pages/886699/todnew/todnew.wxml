@@ -1,0 +1,53 @@
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-orange "></text>
+    今日: {{today.length}}
+  </view>
+</view>
+<view class="cu-list menu-avatar">
+  <view class="cu-item" wx:for="{{today}}" wx:for-item="item" wx:for-index="index" wx:key="1{{index}}"
+    bindtap="onShowInfo" data-oid="{{item._id.$oid}}">
+    <view class="cu-avatar radius lg" style="background-image:url({{item.pic}});">
+    </view>
+    <view class="content">
+      <view>
+        <text class="text-cut">{{item.title}}</text>
+        <text class="text-cut">{{item.title_en}}</text>
+      </view>
+      <view class="text-gray text-sm flex">
+        <view class="cu-tag radius bg-orange" wx:for="{{item.area}}" wx:for-item="area" wx:for-index="aidx" wx:key="11{{aidx}}">{{area}}</view>
+        <view class="cu-tag radius line-green" wx:for="{{item.subtype}}" wx:for-item="subtype" wx:for-index="subidx" wx:key="12{{subidx}}">{{subtype}}</view>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">{{item.year}}</view>
+      <view class="cu-tag round bg-red sm">{{item.type}}</view>
+    </view>
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-orange "></text>
+    昨日: {{yestoday.length}}
+  </view>
+</view>
+<view class="cu-list menu-avatar">
+  <view class="cu-item" wx:for="{{yestoday}}" wx:for-item="item" wx:for-index="index" wx:key="2{{index}}" bindtap="onShowInfo" data-oid="{{item._id.$oid}}">
+    <view class="cu-avatar radius lg" style="background-image:url({{item.pic}});"></view>
+    <view class="content">
+      <view>
+        <text class="text-cut">{{item.title}}</text>
+        <text class="text-cut">{{item.title_en}}</text>
+      </view>
+      <view class="text-gray text-sm flex">
+        <view class="cu-tag radius bg-orange" wx:for="{{item.area}}" wx:for-item="area" wx:for-index="aidx" wx:key="23{{aidx}}">{{area}}</view>
+        <view class="cu-tag radius line-green" wx:for="{{item.subtype}}" wx:for-item="subtype" wx:for-index="subidx" wx:key="23{{subidx}}">{{subtype}}</view>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">{{item.year}}</view>
+      <view class="cu-tag round bg-red sm">{{item.type}}</view>
+    </view>
+  </view>
+</view>
+<official-account></official-account>

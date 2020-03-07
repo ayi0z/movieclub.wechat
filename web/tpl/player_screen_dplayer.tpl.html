@@ -1,0 +1,27 @@
+<div id="dplayer" class="dplayer"></div>
+{{$cdnjs$}}
+<script src="https://cdn.jsdelivr.net/npm/dplayer@1.25.0/dist/DPlayer.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    let vurl = '{{$vurl$}}'
+    if (vurl) {
+      let dp = new DPlayer({
+        container: document.getElementById('dplayer'),
+        screenshot: false,
+        preload: true,
+        autoplay: true,
+        video: { url: vurl }
+      });
+      dp.on('waiting', function () {
+        dp.notice('正在拼命加载，马上就好...', 2000, 0.6);
+      });
+      dp.on('error', function () {
+        dp.notice('视频加载失败，正在重新加载，若依然失败请尝试刷新浏览器', 10000, 0.6);
+        let cutime = dp.video.currentTime;
+        dp.switchVideo({ url: vurl });
+        dp.seek(cutime);
+        dp.play();
+      });
+    }
+  });
+</script>

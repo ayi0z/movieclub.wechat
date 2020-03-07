@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule ^wx.php$ wx.php
+    RewriteRule ^about/?$ about.html
+    RewriteRule ^comment/?$ /contact.html
+    RewriteRule ^p/([0-9a-zA-Z_]+)/([0-9a-zA-Z_]+)$ /index.php?mo=$1&ep=$2
+    RewriteRule ^p/([0-9a-zA-Z_]+)/?$ /index.php?mo=$1
+    RewriteRule ^h/([0-9a-zA-Z_]+)/([0-9a-zA-Z_]+)$ /index.php?mo=$1&ep=$2
+    RewriteRule ^h/([0-9a-zA-Z_]+)/?$ /index.php?mo=$1
+    RewriteRule ^r/([a-z_]+)/([0-9a-zA-Z_]+)/([0-9a-zA-Z_]+)/(.+)$ /report.php?type=$1&mid=$2&epid=$3&content=$4
+</IfModule>

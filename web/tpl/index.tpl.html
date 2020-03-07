@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.jsdelivr.net/npm/dplayer@1.25.0/dist/DPlayer.min.css" />
+    <link rel="stylesheet" href="/css/iconfont.css">
+    <link rel="stylesheet" href="/css/reset.sim.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/zepto.min.js"></script>
+    <title>{{$title$}}</title>
+    <script>
+        const cmds = {
+            'play' : '/p/{{$mo$}}',
+            'comment': '/comment',
+            'about':'/about'
+        }
+        let oPlayer = null
+        function destoryPlayer(){
+            if(oPlayer){
+                // console.log(oPlayer, 'destory')
+                oPlayer.destroy();
+                oPlayer = null;
+            }
+            $('#container').html('');
+        }
+    </script>
+</head>
+<body ontouchstart>
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="weui-tab">
+                <div class="weui-tab__panel" id="container">{{$player$}}</div>
+                <div id="loadingToast" style="display:none;">
+                    <div class="weui-mask_transparent"></div>
+                    <div class="weui-toast">
+                        <i class="weui-loading weui-icon_toast"></i>
+                        <p class="weui-toast__content">数据加载中</p>
+                    </div>
+                </div>
+                <div id="errorToast" style="display:none;">
+                    <div class="weui-mask_transparent"></div>
+                    <div class="weui-toast">
+                        <i class="weui-icon_toast weui-icon-warn weui-icon_msg"></i>
+                        <p class="weui-toast__content">视频加载出错！</p>
+                    </div>
+                </div>
+                <div class="weui-tabbar">
+                    <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on" id="tab_playing" data-cmd="play" data-playingepid="nodata">
+                        <i class="iconfont icon-xuanjiicon" class="weui-tabbar__icon"></i>
+                        <p class="weui-tabbar__label">播放</p>
+                    </a>
+                    <a href="javascript:;" class="weui-tabbar__item" data-cmd="comment" style="display:none">
+                        <i class="iconfont icon-pinglun" class="weui-tabbar__icon"></i>
+                        <p class="weui-tabbar__label">留言板</p>
+                    </a>
+                    <a href="javascript:;" class="weui-tabbar__item" data-cmd="about">
+                        <i class="iconfont icon-guanyuwomen" class="weui-tabbar__icon"></i>
+                        <p class="weui-tabbar__label">关于我们</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var $loadingToast = $('#loadingToast');
+            $('.weui-tabbar__item').on('click', function () {
+                $('#container').html('');
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+
+                if ($loadingToast.css('display') != 'none') return;
+                $loadingToast.fadeIn(100);
+
+                let cmd = cmds[$(this).data('cmd')];
+                if(typeof cmd === 'function'){
+                    cmd();
+                }else if(cmd){
+                    destoryPlayer()
+                    let playingepid = $(this).data('playingepid');
+                    let gourl =  cmd + (playingepid ? '/'+playingepid : '');
+                    fetch(gourl).then(res => ( res.text()))
+                            .then(body=>{ $('#container').html(body); $loadingToast.fadeOut(100); });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

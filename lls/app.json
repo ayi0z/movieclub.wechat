@@ -1,0 +1,13 @@
+{
+    "pages": [
+        "pages/886699/todnew/todnew",
+        "pages/886699/info/info"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "两粒沙",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json"
+}
