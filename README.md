@@ -2,10 +2,11 @@
 
 ## web: 微信网页播放端 
 
-## lls: 小程序(每日更新列表)
-
-## web: mongodb
+### web: mongodb
 > web/db/mongodb/db_handler.php/DBHandler->$constring
 
-## lls: api url （依赖web）
+## lls: 小程序(每日更新列表)
+
+
+### lls: api url （依赖web）
 > lls/pages/886699/todnew/todnew/onLoadData -> wx.request -> url
